@@ -14,13 +14,13 @@ class App extends Component {
         <div className="container">
           <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <img src="https://img.pngio.com/arbonne-png-free-arbonnepng-transparent-images-33881-pngio-arbonne-logo-transparent-background-260_260.png" width="30" height="30" alt="Arbonne Png & Free Arbonne.png Transparent Images #33881 - PNGio"></img>
-            <Link to="/" className="navbar-brand">Mern app</Link>
+            <Link to="/" className="navbar-brand">App</Link>
             <Nav defaultActiveKey="/" as="ul">
               <Nav.Item as="li">
-                <Nav.Link href="/">Todo</Nav.Link>
+                <Nav.Link href="/">Reminders</Nav.Link>
               </Nav.Item>
               <Nav.Item as="li">
-                <Nav.Link href="/create">Create</Nav.Link>
+                <Nav.Link href="/create">Add</Nav.Link>
               </Nav.Item>
             </Nav>
             {/* <div className="collapse nav-collapse">

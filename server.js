@@ -14,6 +14,7 @@ if(process.env.NODE_ENV === "production"){
 
 let Todo = require('./todo.model');
 
+app.use(express.static(path.join(__dirname, "client", "build")))
 app.use(cors());
 app.use(bodyParser.json());
 
@@ -81,7 +82,9 @@ connection.once('open', function(){
 })
 
 app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "./client/build/index.html"));
+    // res.sendFile(path.join(__dirname, "./client/build/index.html"));
+    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+
   });
   
 app.listen(PORT, function(){
