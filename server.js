@@ -12,7 +12,7 @@ if(process.env.NODE_ENV === "production"){
 
 }
 
-let Todo = require('./todo.model');
+let Todo = require('./models');
 
 app.use(express.static(path.join(__dirname, "client", "build")))
 app.use(cors());
