@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "proxy": "http://localhost:3001/",
+  "main": "index.js",
   "scripts": {
     "test": "react-scripts test --env=jsdom",
     "start": "react-scripts start",
