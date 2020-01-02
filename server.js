@@ -74,7 +74,7 @@ todoRoutes.route('/update/:id').post(function(req,res){
 });
 
 app.use('/todos', todoRoutes);
-
+// mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/todos");
 mongoose.connect(process.env.MONGODB_URI || "mongodb://arthiatsr:Iskavsda@01@ds043047.mlab.com:43047/heroku_kv61q4p0");
 const connection = mongoose.connection;
 connection.once('open', function(){
