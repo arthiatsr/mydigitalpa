@@ -50,7 +50,7 @@ export default class TodosList extends Component{
     render() {
         return (
             <div>
-                <h3>Todos List</h3>
+                <h3>Reminders</h3>
                 <Table striped bordered hover variant="dark" size="sm">
                 <thead>
                     <tr>
