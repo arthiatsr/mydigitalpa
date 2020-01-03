@@ -12,14 +12,14 @@ if(process.env.NODE_ENV === "production"){
 
 }
 
-let Todo = require('./models');
+let db = require('./models');
 
 app.use(express.static(path.join(__dirname, "client", "build")))
 app.use(cors());
 app.use(bodyParser.json());
 
 todoRoutes.route('/').get(function(req,res){
-    Todo.find(function(err,todos){
+    db.Todo.find(function(err,todos){
         if(err) {
             console.log(err);
         } else {
@@ -30,7 +30,7 @@ todoRoutes.route('/').get(function(req,res){
 
 todoRoutes.route('/:id').get(function(req,res){
     let id = req.params.id;
-    Todo.findById(id, function(err,todo){
+    db.Todo.findById(id, function(err,todo){
         if(err) {
             console.log(err);
         } else {
@@ -40,8 +40,8 @@ todoRoutes.route('/:id').get(function(req,res){
 });
 
 todoRoutes.route('/add').post(function(req,res){
-    let todo = new Todo(req.body);
-    todo.save()
+  //  let todo = new Todo(req.body);
+    db.Todo.create(req.body)
         .then( todo => {
             res.status(200).json({'todo': 'todo added successfully'});
 
