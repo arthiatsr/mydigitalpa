@@ -40,7 +40,7 @@ todoRoutes.route('/:id').get(function(req,res){
 });
 
 todoRoutes.route('/add').post(function(req,res){
-  //  let todo = new Todo(req.body);
+  console.log("adding !!!!!!")
     db.Todo.create(req.body)
         .then( todo => {
             console.log("@@@check###",todo);
