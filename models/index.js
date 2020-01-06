@@ -1,3 +1,4 @@
 module.exports = {
-    Todo: require("./Todo")
+    Todo: require("./Todo"),    
+    LogAdd: require("./LoginAdd")
 }
