@@ -1,26 +1,81 @@
-export default function ContactUs() {
+import React from "react";
+import emailjs from 'emailjs-com';
 
-    function sendEmail(e) {
-      e.preventDefault();
-  
-      emailjs.sendForm('3f275478898909dd66ec9c02afd21d3a', 'reach_friend', e.target, 'user_6E17hEsOwkfjk6uHyijD7')
-        .then((result) => {
-            console.log(result.text);
-        }, (error) => {
-            console.log(error.text);
-        });
-    }
-  
-    return (
-      <form className="contact-form" onSubmit={sendEmail}>
-        <input type="hidden" name="contact_number" />
-        <label>Name</label>
-        <input type="text" name="user_name" />
-        <label>Email</label>
-        <input type="email" name="user_email" />
-        <label>Message</label>
-        <textarea name="message" />
-        <input type="submit" value="Send" />
-      </form>
-    );
+import { fade, makeStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
+
+const useStyles = makeStyles(theme => ({
+  root: {
+     flexGrow: 1,
+  },
+  paper: {
+    padding: theme.spacing(2),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+    padding: 30,
+  },
+  image: {
+    padding: 60,
+    margin: 30,
+    backgroundImage: 'url(https://source.unsplash.com/random)',
+    backgroundSize: 'cover',
+    backgroundPosition: 'right',
+
+  },
+}));
+
+export default function Friend() {
+
+  const classes = useStyles();
+
+  function sendEmail(e) {
+    
+    e.preventDefault();
+
+    emailjs.sendForm('default_service', 'reach_F', e.target, 'user_6E17hEsOwkfjk6uHyijD7')
+    .then((res) => {console.log(res.text);
+    }, (error) => {console.log(error.text);
+    });
   }
+
+  return (
+    <div className={classes.root}>
+      <Grid  className={classes.image} container spacing={8}>
+        <Grid item xs={8} sm={4}>
+            <Paper className={classes.paper}>
+                <form className="contact-form" onSubmit={sendEmail}>
+                    <input type="hidden" name="contact_number" />
+                    <label>name</label>  
+                    <input type="text" name="user_name" /> 
+                    <label>Email</label>            
+                    <input type="email" name="user_email" />
+                    <label>Message</label>            
+                    <label>Message</label>
+                    <textarea name="message" />            
+                </form>
+            </Paper>
+        </Grid>
+      </Grid>
+    </div>
+  );
+// }
+
+
+// export default function F() {
+
+
+
+// return (
+//     <form className="contact-form" onSubmit={sendEmail}>
+//     <input type="hidden" name="contact_number" />
+//     <label>F</label>      
+//     <input type="text" name="user_name" /> 
+//     <label>Email</label>
+//     <input type="email" name="user_email" />
+//     <label>Message</label>
+//     <textarea name="message" />
+//     <input type="submit" value="Send" />
+//     </form>
+// );
+}

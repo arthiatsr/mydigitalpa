@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useEffect } from "react";
 import { BrowserRouter as Router, Route, Link, Redirect, withRouter } from "react-router-dom";
 import { fade, makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -23,6 +23,10 @@ import GridListTileBar from '@material-ui/core/GridListTileBar';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import InfoIcon from '@material-ui/icons/Info';
 import Photolist from "./Photolist";
+
+import { STATES } from "mongoose";
+import { urlencoded } from "body-parser";
+
 
 const useStyles = makeStyles(theme => ({
   button: {
@@ -110,7 +114,9 @@ export default function Home(props) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
   const [photoChoice, setPhotoChoice] = React.useState("");
-  const [photoArray, setPhotoArray] = React.useState([]);
+  const [photoArray , setPhotoArray] = React.useState([]);
+  // const [imageUrl , setImageUrl] = React.useState([]);
+  // const [photoArray , setPhotoArray] = React.useState({url: ""});
 
 
   const isMenuOpen = Boolean(anchorEl);
@@ -141,6 +147,12 @@ export default function Home(props) {
     setAnchorEl(null);
   };
 
+  function mailOpen (){
+
+    props.history.push("/email");
+                      
+  }
+
   const menuId = 'primary-search-account-menu';
   // const renderMenu = (
   //   <Menu
@@ -157,6 +169,7 @@ export default function Home(props) {
   //   </Menu>
   // );
 
+  
   const mobileMenuId = 'primary-search-account-menu-mobile';
   const renderMobileMenu = (
     <Menu
@@ -171,7 +184,7 @@ export default function Home(props) {
       <MenuItem>
         <IconButton aria-label="show 4 new mails" color="inherit">
           <Badge badgeContent={4} color="secondary">
-            <MailIcon />
+            <MailIcon onClick={mailOpen}/>
           </Badge>
         </IconButton>
         <p>Messages</p>
@@ -197,12 +210,24 @@ export default function Home(props) {
       </MenuItem>
     </Menu>
   );
+  
+  
 
   function logoutSubmit (){
 
     props.history.push("/");
                       
   }
+
+  useEffect(() => {
+    {console.log("i am loaded");
+  photographyApi();}
+  
+}, []);
+
+
+                    
+
 
 const photographyApi = event => {
 
@@ -212,19 +237,28 @@ const photographyApi = event => {
   console.log(query);
   axios.get(query)
       // .then(res => setPhotoArray({photoArray: res.data}),props.history.push("/photolist"))  
-      .then(res => setPhotoArray(res.data.results))     
+      .then(res => setPhotoArray({photoArray: res.data.results}))     
+      // .then(res => {console.log(res.data.results)
+        // setImageUrl({imageUrl: res.data.results})}) 
+      
       .catch(err => console.log(err));
 }
 function renderPhotoList() {
-  console.log(photoArray)
-  if(photoArray.length){
+  console.log(Object.keys(photoArray).length,photoArray)
+  if(Object.keys(photoArray).length>0){  
+    console.log("i am inside",photoArray)
+
   return (
-    <div>
-        <Photolist photoItems={photoArray} />
+    
+    <div>      
+      <Photolist photoItems={photoArray} />  
     </div>
     )
   }
 }
+
+
+
 return (
   <div className={classes.grow}>
     <AppBar position="static">
@@ -276,7 +310,7 @@ return (
           <div className={classes.sectionDesktop}>
             <IconButton aria-label="show 4 new mails" color="inherit">
               <Badge badgeContent={4} color="secondary">
-                <MailIcon />
+                <MailIcon  onClick={mailOpen}/>
               </Badge>
             </IconButton>
             <IconButton aria-label="show 17 new notifications" color="inherit">
@@ -311,6 +345,7 @@ return (
       </AppBar>
       {renderMobileMenu}
       {renderPhotoList()}
+
       {/* {renderMenu} */}
   </div>
 );
