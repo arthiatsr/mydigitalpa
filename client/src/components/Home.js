@@ -219,11 +219,11 @@ export default function Home(props) {
                       
   }
 
-  useEffect(() => {
-    {console.log("i am loaded");
-  photographyApi();}
+//   useEffect(() => {
+//     {console.log("i am loaded");
+//   photographyApi();}
   
-}, []);
+// }, []);
 
 
                     

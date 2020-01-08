@@ -17,10 +17,10 @@ const useStyles = theme => ({
   },
   image: {
     padding: 60,
-    margin: 30,
+    margin: 10,
     backgroundImage: 'url(https://source.unsplash.com/random)',
     backgroundSize: 'cover',
-    backgroundPosition: 'right',
+    backgroundPosition: 'center',
 
   },
   signinbutton: {
@@ -45,6 +45,10 @@ const useStyles = theme => ({
     padding: theme.spacing(2),
     textAlign: 'center',
     color: theme.palette.text.secondary,
+  },
+  copyRig: {
+    padding: 60,
+
   },
 });
 
@@ -90,13 +94,18 @@ signUpSubmit = event => {
 signInSubmit = event => {
   event.preventDefault();
   if ((this.state.email) && (this.state.password)) {
-    console.log(this.state.email, this.state.password)
+    console.log("I am inside signin",this.state.email, this.state.password)
     API.getAuth(this.state.email,this.state.password)
         // .then(res => this.setState({ Authen: res.data, email: "", password: "" }, () => console.log("Authen",this.state.Authen) ))
-        .then(res => {
-          this.setState({ Authen: res.data, email: "", password: "" }, () => {
-
-          this.props.history.push("/loggedin")} )
+        .then(res => { 
+          this.setState({ Authen: res.data, email: "", password: "" },
+          console.log("apidata",res.data),
+          // , () => {
+          
+          // console.log("Authen",this.state.Authen)
+          this.props.history.push("/loggedin")
+        // }
+         )
         })
 
         //     res =>
@@ -132,7 +141,7 @@ render() {
             </Grid>
         </Grid>  
         <Grid>
-          <Copyright />
+          <Copyright className={classes.copyRig} />
         </Grid>                      
     </div>      
     );
