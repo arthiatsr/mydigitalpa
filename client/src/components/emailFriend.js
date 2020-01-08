@@ -4,6 +4,8 @@ import emailjs from 'emailjs-com';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
+import Button from '@material-ui/core/Button';
+
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -25,7 +27,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function Friend() {
+export default function Friend(props) {
 
   const classes = useStyles();
 
@@ -38,6 +40,11 @@ export default function Friend() {
     }, (error) => {console.log(error.text);
     });
   }
+  function logoutSubmit (){
+
+    props.history.push("/");
+                      
+  }
 
   return (
     <div className={classes.root}>
@@ -45,18 +52,20 @@ export default function Friend() {
         <Grid item xs={8} sm={4}>
             <Paper className={classes.paper}>
                 <form className="contact-form" onSubmit={sendEmail}>
-                    <input type="hidden" name="contact_number" />
                     <label>name</label>  
                     <input type="text" name="user_name" /> 
+                    <br />
                     <label>Email</label>            
                     <input type="email" name="user_email" />
+                    <br />
                     <label>Message</label>            
-                    <label>Message</label>
                     <textarea name="message" />            
                 </form>
             </Paper>
         </Grid>
       </Grid>
+      <Button onClick={logoutSubmit} className={classes.button} variant="contained" color="primary" >Log out</Button> 
+
     </div>
   );
 // }

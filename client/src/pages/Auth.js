@@ -94,7 +94,8 @@ signUpSubmit = event => {
 signInSubmit = event => {
   event.preventDefault();
   if ((this.state.email) && (this.state.password)) {
-    console.log("I am inside signin",this.state.email, this.state.password)
+
+    console.log("I am inside signin", this.state.email, this.state.password)
     API.getAuth(this.state.email,this.state.password)
         // .then(res => this.setState({ Authen: res.data, email: "", password: "" }, () => console.log("Authen",this.state.Authen) ))
         .then(res => { 
