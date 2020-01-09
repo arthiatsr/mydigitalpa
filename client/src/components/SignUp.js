@@ -26,7 +26,6 @@ const useStyles = makeStyles(theme => ({
   
   }));
   
-//   export default function CenteredGrid() {
 
 export default function SignUp(props) {
 

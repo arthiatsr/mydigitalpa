@@ -1,11 +1,10 @@
-import React from "react";
+import React, { useState} from "react";
 import emailjs from 'emailjs-com';
-
 import { fade, makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
-
+import {useInput} from './useInput';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -29,14 +28,29 @@ const useStyles = makeStyles(theme => ({
 
 export default function Friend(props) {
 
+  const { value:user_name, bind:binduser_name, reset:resetuser_name } = useInput('');
+  const { value:user_email, bind:binduser_email, reset:resetuser_email } = useInput('');
+  const { value:user_message, bind:binduser_message, reset:resetuser_message } = useInput('');
+
+//   const clearFormSubmit = (e) => {
+//     e.preventDefault();
+//     resetuser_name();
+//     resetuser_email();
+//     resetuser_message();
+
+// }
+
   const classes = useStyles();
 
   function sendEmail(e) {
     
     e.preventDefault();
 
-    emailjs.sendForm('default_service', 'reach_F', e.target, 'user_6E17hEsOwkfjk6uHyijD7')
+    emailjs.sendForm('default_service', 'reach_friend', e.target, 'user_6E17hEsOwkfjk6uHyijD7')
     .then((res) => {console.log(res.text);
+      resetuser_name();
+      resetuser_email();
+      resetuser_message(); 
     }, (error) => {console.log(error.text);
     });
   }
@@ -45,46 +59,26 @@ export default function Friend(props) {
     props.history.push("/");
                       
   }
-
-  return (
-    <div className={classes.root}>
-      <Grid  className={classes.image} container spacing={8}>
-        <Grid item xs={8} sm={4}>
-            <Paper className={classes.paper}>
-                <form className="contact-form" onSubmit={sendEmail}>
+  
+  return (    
+    <div>
+      <Button onClick={logoutSubmit} className={classes.button} variant="contained" color="primary" >Log out</Button> 
+      
+                <form className="contact-form" onSubmit={sendEmail
+                  // ,clearFormSubmit
+                  }>
                     <label>name</label>  
-                    <input type="text" name="user_name" /> 
+                    <input type="text" {...binduser_name} name="user_name" /> 
                     <br />
                     <label>Email</label>            
-                    <input type="email" name="user_email" />
+                    <input type="email" {...binduser_email} name="user_email" />
                     <br />
                     <label>Message</label>            
-                    <textarea name="message" />            
+                    <textarea {...binduser_message} name="message" /> 
+                    <input type="submit"  value="Send"  />           
                 </form>
-            </Paper>
-        </Grid>
-      </Grid>
-      <Button onClick={logoutSubmit} className={classes.button} variant="contained" color="primary" >Log out</Button> 
-
     </div>
   );
-// }
+ }
 
-
-// export default function F() {
-
-
-
-// return (
-//     <form className="contact-form" onSubmit={sendEmail}>
-//     <input type="hidden" name="contact_number" />
-//     <label>F</label>      
-//     <input type="text" name="user_name" /> 
-//     <label>Email</label>
-//     <input type="email" name="user_email" />
-//     <label>Message</label>
-//     <textarea name="message" />
-//     <input type="submit" value="Send" />
-//     </form>
-// );
-}
+ 

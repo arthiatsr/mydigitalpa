@@ -115,10 +115,6 @@ export default function Home(props) {
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
   const [photoChoice, setPhotoChoice] = React.useState("");
   const [photoArray , setPhotoArray] = React.useState([]);
-  // const [imageUrl , setImageUrl] = React.useState([]);
-  // const [photoArray , setPhotoArray] = React.useState({url: ""});
-
-
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
@@ -168,7 +164,6 @@ export default function Home(props) {
   //     <MenuItem onClick={handleMenuClose}>My account</MenuItem>
   //   </Menu>
   // );
-
   
   const mobileMenuId = 'primary-search-account-menu-mobile';
   const renderMobileMenu = (
@@ -210,24 +205,12 @@ export default function Home(props) {
       </MenuItem>
     </Menu>
   );
-  
-  
 
   function logoutSubmit (){
 
     props.history.push("/");
                       
   }
-
-//   useEffect(() => {
-//     {console.log("i am loaded");
-//   photographyApi();}
-  
-// }, []);
-
-
-                    
-
 
 const photographyApi = event => {
 
@@ -236,11 +219,7 @@ const photographyApi = event => {
   let query = 'https://api.unsplash.com/search/photos?query=' + searchterm + apikey;
   console.log(query);
   axios.get(query)
-      // .then(res => setPhotoArray({photoArray: res.data}),props.history.push("/photolist"))  
       .then(res => setPhotoArray({photoArray: res.data.results}))     
-      // .then(res => {console.log(res.data.results)
-        // setImageUrl({imageUrl: res.data.results})}) 
-      
       .catch(err => console.log(err));
 }
 function renderPhotoList() {
@@ -256,8 +235,6 @@ function renderPhotoList() {
     )
   }
 }
-
-
 
 return (
   <div className={classes.grow}>
@@ -348,7 +325,7 @@ return (
 
       {/* {renderMenu} */}
   </div>
-);
+  );
 }
 
 

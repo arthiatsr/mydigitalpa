@@ -26,8 +26,6 @@ const useStyles = makeStyles(theme => ({
   
   }));
   
-//   export default function CenteredGrid() {
-
 export default function Signin(props) {
 
     const [email, setEmail] = useState("");
@@ -36,21 +34,18 @@ export default function Signin(props) {
     const classes = useStyles();
 
     function loginSubmit (event){
-        console.log("hi");
 
-        event.preventDefault();
-
-        
+        event.preventDefault();        
         // if((email === "arthiatsr@gmail.com") && (password === "america")){
         //     console.log("hiinside");
         //     props.history.push("/login");
         // }
         // else{
         //     alert(`Login Failed`);
-        // }              
+        // }           
         
     }
-                
+               
     return (
 
     <div className={classes.root}>

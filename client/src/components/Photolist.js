@@ -1,19 +1,14 @@
 import React from 'react';
-import { fade, makeStyles } from '@material-ui/core/styles';
-
+import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
     
     
   }));
   
-  export default function PhotoItems(props) {
+export default function PhotoItems(props) {
   
-    const classes = useStyles();
-
-// const photoItems = (props) => {
-    console.log("I ma in photolist",props.photoItems )
-    console.log("I ma in photolist",props.photoItems.photoArray )
+const classes = useStyles();
 
     return(
         <div>
@@ -24,5 +19,4 @@ const useStyles = makeStyles(theme => ({
     ) 
 }
 
-// export default PhotoItems;
   
