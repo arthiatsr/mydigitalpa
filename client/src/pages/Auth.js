@@ -95,19 +95,31 @@ signInSubmit = event => {
   event.preventDefault();
   if ((this.state.email) && (this.state.password)) {
 
-    console.log("I am inside signin", this.state.email, this.state.password)
     API.getAuth(this.state.email,this.state.password)
         // .then(res => this.setState({ Authen: res.data, email: "", password: "" }, () => console.log("Authen",this.state.Authen) ))
-        .then(res => { 
-          this.setState({ Authen: res.data, email: "", password: "" },
-          console.log("apidata",res.data),
-          // , () => {
-          
-          // console.log("Authen",this.state.Authen)
-          this.props.history.push("/loggedin")
-        // }
-         )
-        })
+        .then(res => { res.data.length > 0 ? this.props.history.push("/loggedin") : alert(`Login Failed`)
+        console.log("I am inside signin", this.state.email, this.state.password)
+
+        //    this.setState({ Authen: res.data, email: "", password: "" },
+        //    console.log("res.data",res.data)
+           
+        //    , () => {
+        //   if(res.data.length > 0){
+        //     console.log("res.data1",res.data)
+
+        //     this.props.history.push("/loggedin")
+
+        //     // res.json(dbModel)
+        //   }else{
+        //     console.log("res.status",res.data)
+        //     res.status = 404
+        //   }
+        //   // console.log("Authen",this.state.Authen)
+         
+        // //  )
+         })
+        // })
+
 
         //     res =>
         // this.state.history.push("/login")            

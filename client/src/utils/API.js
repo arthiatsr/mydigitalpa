@@ -6,7 +6,7 @@ export default {
     console.log("i am inside the api.js file",email, password)
     // return axios.get("/api/auth/", {params: {email:email,  password:password}});
     // return axios.get("/api/auth/",{ email: email, password: password });
-     return axios.get("/api/auth/:" + email + "/:" + password  );
+     return axios.get("/api/auth/" + email + "/" + password  );
 
   },
   
